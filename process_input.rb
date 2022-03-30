@@ -6,8 +6,13 @@ class UserInputProcessor
     # @app.load_files_if_exists
   end
 
-  def process_input(user_input)
-    case user_input
+  def exit_app
+    puts 'Good Bye!'
+    exit
+  end
+
+  def check_option(input)
+    case input
     when 1
       @app.list_all_books
     when 2
@@ -27,10 +32,13 @@ class UserInputProcessor
     when 9
       @app.add_game
     when 10
-      puts 'Good Bye!'
-      exit
+      exit_app
     else
       puts 'Wrong input! Enter a number 1 - 10.'
     end
+  end
+
+  def process_input(user_input)
+    check_option(user_input)
   end
 end
