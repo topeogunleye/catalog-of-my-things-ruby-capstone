@@ -5,7 +5,7 @@ end
 def menu
   puts 'Select an option: '
   puts '1 - List books', '2 - List people', '3 - Create person', '4 - Create book', '5 - Create rental',
-       '6 - List rentals by person_id', '7 - exit'
+       '6 - exit'
 end
 
 def run
@@ -23,8 +23,6 @@ def run
   when 5
     puts 'Create rental'
   when 6
-    puts 'List rentals by person_id'
-  when 7
     exit
   else
     puts 'Invalid option'
