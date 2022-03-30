@@ -1,4 +1,4 @@
-require_relative './options/add_music_album.rb'
+require_relative './options/add_music_album'
 
 class App
   def initialize; end
@@ -12,35 +12,34 @@ class App
   end
 
   require 'json'
-require_relative './run'
+  require_relative './run'
 
-def list_all_music_albums
-  File.write('album.json', '[]') unless File.exist? 'album.json'
-  albums = JSON.parse(File.read('album.json'))
-  if albums.empty?
-    puts '----No albums added yet, please add albums----'
-  else
-    puts '-----------------------------------------'
-    albums.each_with_index do |album, index|
-      puts "#{index + 1}) ID:#{album['id']}, publish date: #{album['publish_date']},
+  def list_all_music_albums
+    File.write('album.json', '[]') unless File.exist? 'album.json'
+    albums = JSON.parse(File.read('album.json'))
+    if albums.empty?
+      puts '----No albums added yet, please add albums----'
+    else
+      puts '-----------------------------------------'
+      albums.each_with_index do |album, index|
+        puts "#{index + 1}) ID:#{album['id']}, publish date: #{album['publish_date']},
       on spotify: #{album['on_spotify']}, genre: #{album['genre']}"
+      end
+      puts '-----------------------------------------'
     end
-    puts '-----------------------------------------'
   end
-end
 
-def list_all_genres
-  File.write('album.json', '[]') unless File.exist? 'album.json'
-  albums = JSON.parse(File.read('album.json'))
-  if albums.empty?
-    puts '----No genres added yet----'.colorize(:red)
-  else
-    puts '-----------------------------------------'
-    albums.each_with_index do |album, index|
-      puts "#{index + 1}) Genre name: #{album['genre']}"
+  def list_all_genres
+    File.write('album.json', '[]') unless File.exist? 'album.json'
+    albums = JSON.parse(File.read('album.json'))
+    if albums.empty?
+      puts '----No genres added yet----'.colorize(:red)
+    else
+      puts '-----------------------------------------'
+      albums.each_with_index do |album, index|
+        puts "#{index + 1}) Genre name: #{album['genre']}"
+      end
+      puts '-----------------------------------------'
     end
-    puts '-----------------------------------------'
   end
-end
-
 end
