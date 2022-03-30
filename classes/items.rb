@@ -11,7 +11,7 @@ class Item
 
   def add_genre(genre)
     @genre = genre
-    genre.items << self unless genre.items.include?(self)
+    genre.items << self
   end
 
   def add_author(author)
@@ -30,6 +30,6 @@ class Item
 
   def can_be_archived?
     # should return true if published_date is older than 10 years
-    Time.now - @published_date > 10_000_000
+    @published_date < Date.today - 10_000
   end
 end
