@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
+require_relative './process_input'
 
 class MainEntryPoint
-  def initialize; end
+  def initialize
+    @processor = UserInputProcessor.new
+  end
 
   def display_menu
     puts 'Select an option: '
@@ -10,21 +13,23 @@ class MainEntryPoint
           '6 - List Authors', '7 - Add Book', '8 - Add Music Album', '9 - Add Game', '10 - Exit App']
   end
 
-  def run
+  def open
     user_input = nil
     puts 'Welcome to Category of My Things!'
     puts
 
-    while user_input != '7'
+    while user_input != 10
       display_menu
-      user_input = gets.chomp
+      puts
+      user_input = gets.chomp.to_i
+      @processor.process_input(user_input)
     end
   end
 end
 
 def run_app
-  app = MainEntryPoint.new
-  app.run
+  entry_point = MainEntryPoint.new
+  entry_point.open
 end
 
 run_app
