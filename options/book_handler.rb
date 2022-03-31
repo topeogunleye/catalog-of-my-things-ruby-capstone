@@ -1,12 +1,11 @@
 require_relative '../classes/book'
 
 class BookHandler
-  #   def initialize(file, data_to_save)
-  #     @file_data = nil
-  #     'books.json' = file
-  #     @data_to_save = data_to_save
-  #     @destructured_array = nil
-  #   end
+  def initialize
+    @file_data = nil
+    @new_book = nil
+    @destructured_array = nil
+  end
 
   #   def load_file
   #     file_to_load = File.read('books.json')
@@ -25,20 +24,18 @@ class BookHandler
 
   def read_file_if_it_exists
     create_file unless File.file?('books.json')
-    # @file_data = File.read('books.json')
+    @file_data = File.read('books.json')
   end
 
-  #   def append_to_array
-  #     @destructured_array = JSON.parse(@file_data)
+  def append_to_array
+    @destructured_array = JSON.parse(@file_data)
 
-  #     @to_save.each do |person|
-  #       @destructured_array << { class: person.class, id: person.id, name: person.name, age: person.age }
-  #     end
-  #   end
+    @destructured_array << @new_book
+  end
 
   def preserve_data
     read_file_if_it_exists
-    #   append_to_array
+    append_to_array
 
     File.open('books.json', 'w') do |f|
       f.puts JSON.pretty_generate(@destructured_array)
@@ -61,12 +58,9 @@ class BookHandler
     print 'Publish Date: '
     publish_date = gets.chomp
 
-    book = Book.new(author, publisher, cover_state, label, publish_date)
+    @new_book = Book.new(author, publisher, cover_state, label, publish_date)
+    preserve_data
 
-    read_file_if_it_exists
-    # @newly_created_books << book
-    # @books << book
-    puts book
-    # book = Book.new()
+    puts 'Book created sucessfully'
   end
 end
