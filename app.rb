@@ -1,7 +1,10 @@
 require_relative './options/add_music_album'
+require_relative './options/book_handler'
 
 class App
-  def initialize; end
+  def initialize
+    @book_handler = BookHandler.new
+  end
 
   def add_music_album
     publish_date, on_spotify = music_album_data
@@ -38,5 +41,9 @@ class App
       end
       puts '-----------------------------------------'
     end
+  end
+
+  def add_book
+    @book_handler.create_new_book
   end
 end
