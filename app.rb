@@ -66,7 +66,7 @@ class App
 
   def add_author
     first_name, last_name = author_input
-  
+
     @authors << Author.new(first_name, last_name)
     puts 'Author created successfully'
     puts ''
@@ -97,5 +97,5 @@ class App
     last_name = gets.chomp
 
     [first_name, last_name]
-  end  
+  end
 end
