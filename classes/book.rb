@@ -9,6 +9,7 @@ class Book < Item
     @publisher = publisher
     @cover_state = cover_state
     @label = label
+    @publish_date = publish_date
   end
 
   def can_be_archived?

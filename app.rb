@@ -46,4 +46,8 @@ class App
   def add_book
     @book_handler.create_new_book
   end
+
+  def list_all_books
+    @book_handler.load_books
+  end
 end

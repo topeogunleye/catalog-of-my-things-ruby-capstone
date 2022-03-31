@@ -7,14 +7,14 @@ class BookHandler
     @destructured_array = nil
   end
 
-  #   def load_file
-  #     file_to_load = File.read('books.json')
-  #     JSON.parse(file_to_load)
-  #   end
+  def load_file
+    file_to_load = File.read('books.json')
+    JSON.parse(file_to_load)
+  end
 
-  #   def files_to_load
-  #     load_files unless File.file?('books.json') == false
-  #   end
+  def load_file_if_it_exist
+    load_file unless File.file?('books.json') == false
+  end
 
   def create_file
     new_file = File.new('books.json', 'w')
@@ -30,7 +30,8 @@ class BookHandler
   def append_to_array
     @destructured_array = JSON.parse(@file_data)
 
-    @destructured_array << @new_book
+    @destructured_array << { 'author' => @new_book.author, 'publisher' => @new_book.publisher,
+                             'cover_state' => @new_book.cover_state, 'label' => @new_book.label, 'publish_date' => @new_book.publish_date }
   end
 
   def preserve_data
@@ -40,6 +41,15 @@ class BookHandler
     File.open('books.json', 'w') do |f|
       f.puts JSON.pretty_generate(@destructured_array)
     end
+  end
+
+  def load_books
+    file_data = load_file_if_it_exist
+    puts '-----------------------------------------'
+    file_data.each_with_index do |book, index|
+      puts "(#{index}) - Author: #{book['author']}, Publisher: #{book['publisher']}, Cover State: #{book['cover_state']}, Label: #{book['label']}, Publish Date: #{book['publish_date']}"
+    end
+    puts '-----------------------------------------'
   end
 
   def create_new_book
