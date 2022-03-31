@@ -58,7 +58,7 @@ class App
   def add_game
     multiplayer, last_played_at = game_input
     publish_date = publish_date_input
-  
+
     @games << Game.new(multiplayer, last_played_at, publish_date)
     puts 'Game created successfully'
     puts ''
@@ -77,10 +77,10 @@ class App
   def game_input
     print 'Multiplayer: '
     multiplayer = gets.chomp
-  
+
     print 'Last_played_at: '
     last_played_at = gets.chomp.to_i
-  
+
     [multiplayer, last_played_at]
   end
 
@@ -92,10 +92,10 @@ class App
   def author_input
     print 'First name: '
     first_name = gets.chomp
-  
+
     print 'Last name: '
     last_name = gets.chomp
-  
+
     [first_name, last_name]
   end  
 end
