@@ -1,4 +1,5 @@
 require_relative './options/add_music_album'
+require_relative './options/book_handler'
 require './classes/game'
 require './classes/author'
 require './modules/game_module'
@@ -6,11 +7,8 @@ require './modules/author_module'
 require 'json'
 
 class App
-  include GamesDataController
-  include AuthorsDataController
   def initialize
-    @games = load_games
-    @authors = load_authors
+    @book_handler = BookHandler.new
   end
 
   def add_music_album
@@ -48,6 +46,18 @@ class App
       end
       puts '-----------------------------------------'
     end
+  end
+
+  def add_book
+    @book_handler.create_new_book
+  end
+
+  def list_all_books
+    @book_handler.load_books
+  end
+
+  def list_all_labels
+    @book_handler.list_labels
   end
 
   def list_all_games
