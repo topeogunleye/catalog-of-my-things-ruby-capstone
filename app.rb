@@ -1,9 +1,17 @@
 require_relative './options/add_music_album'
 require './classes/game'
 require './classes/author'
+require './modules/game_module'
+require './modules/author_module'
+require 'json'
 
 class App
-  def initialize; end
+  include GamesDataController
+  include AuthorsDataController
+  def initialize
+    @games = load_games
+    @authors = load_authors
+  end
 
   def add_music_album
     publish_date, on_spotify = music_album_data
@@ -62,6 +70,13 @@ class App
     @games << Game.new(multiplayer, last_played_at, publish_date)
     puts 'Game created successfully'
     puts ''
+    data = []
+    @games.each do |game|
+      puts game
+      # data.push({ multiplayer: game.multiplayer, last_played_at: game.last_played_at,
+      #             publish_date: game.publish_date })
+    end
+    # File.write('./json/games.json', JSON.generate(data))
   end
 
   def add_author
@@ -70,6 +85,7 @@ class App
     @authors << Author.new(first_name, last_name)
     puts 'Author created successfully'
     puts ''
+    @save_authors
   end
 
   private
@@ -86,7 +102,7 @@ class App
 
   def publish_date_input
     print 'Publish_date: '
-    gets.chomp.to_i
+    gets.chomp.to_s
   end
 
   def author_input

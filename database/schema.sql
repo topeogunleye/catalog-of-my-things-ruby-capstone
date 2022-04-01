@@ -18,6 +18,24 @@ CREATE TABLE genre(
     CONSTRAINT item_fk FOREIGN KEY (item_id) REFERENCES items(id)
 );
 
+CREATE TABLE lables (
+    id INT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    color VARCHAR(100) NOT NULL,
+);
+
+CREATE TABLE labels (
+    id  INT GENERATED ALWAYS AS IDENTITY,
+    title VARCHAR(100),
+    color VARCHAR(100),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE sources (
+    id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+);
+
 CREATE TABLE musicalbum (
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(100),
@@ -57,3 +75,5 @@ CREATE TABLE games (
     FOREIGN KEY author_id REFERENCES author (id),
     FOREIGN KEY source_id REFERENCES source (id)
 );
+
+
