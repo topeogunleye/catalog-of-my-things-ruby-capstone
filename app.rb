@@ -1,10 +1,7 @@
 require_relative './options/add_music_album'
-<<<<<<< HEAD
 require_relative './options/book_handler'
-=======
 require './classes/game'
 require './classes/author'
->>>>>>> develop
 
 class App
   def initialize
@@ -48,7 +45,6 @@ class App
     end
   end
 
-<<<<<<< HEAD
   def add_book
     @book_handler.create_new_book
   end
@@ -59,7 +55,8 @@ class App
 
   def list_all_labels
     @book_handler.list_labels
-=======
+  end
+
   def list_all_games
     puts 'There are no game please try to add one !' if @games.count.zero?
     @games.each do |game|
@@ -115,6 +112,5 @@ class App
     last_name = gets.chomp
 
     [first_name, last_name]
->>>>>>> develop
   end
 end
