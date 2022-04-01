@@ -73,4 +73,16 @@ class BookHandler
 
     puts 'Book created sucessfully'
   end
+
+  def list_labels
+    file_data = load_file_if_it_exist
+    labels = file_data.uniq { |book| [book['label']] }
+
+    puts '-----------------------------------------'
+    labels.each_with_index do |book, index|
+      puts "(#{index}) - Label: #{book['label']}"
+    end
+
+    puts '-----------------------------------------'
+  end
 end

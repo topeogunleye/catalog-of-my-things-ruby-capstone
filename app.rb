@@ -50,4 +50,8 @@ class App
   def list_all_books
     @book_handler.load_books
   end
+
+  def list_all_labels
+    @book_handler.list_labels
+  end
 end
