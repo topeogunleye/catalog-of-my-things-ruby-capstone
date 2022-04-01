@@ -7,7 +7,7 @@ module GamesDataController
     data = []
     if File.exist?(file) && File.read(file) != ''
       JSON.parse(File.read(file)).each do |element|
-        data.push(Game.new(element['multiplayer'], element['last_played_at'], element['publish_date']))
+        data.push(Game.new(element['multiplayer'], element['last_played_at'], element['published_date']))
       end
     end
     data
@@ -15,9 +15,10 @@ module GamesDataController
 
   def save_games
     data = []
+    puts @games.to_s
     @games.each do |game|
       data.push({ multiplayer: game.multiplayer, last_played_at: game.last_played_at,
-                  publish_date: game.publish_date })
+                  published_date: game.publish_date.to_s })
     end
     File.write('./json/games.json', JSON.generate(data))
   end

@@ -7,8 +7,12 @@ require './modules/author_module'
 require 'json'
 
 class App
+  include GamesDataController
+  include AuthorsDataController
   def initialize
     @book_handler = BookHandler.new
+    @games = load_games
+    @authors = load_authors
   end
 
   def add_music_album
@@ -61,7 +65,7 @@ class App
   end
 
   def list_all_games
-    puts 'There are no game please try to add one !' if @games.count.zero?
+    puts 'There are no games please try to add one !' if @games.count.zero?
     @games.each do |game|
       puts "#{game.multiplayer}, Last played at: #{game.last_played_at}, Publish date: #{game.publish_date}"
     end
@@ -78,24 +82,17 @@ class App
     publish_date = publish_date_input
 
     @games << Game.new(multiplayer, last_played_at, publish_date)
+    save_games
     puts 'Game created successfully'
     puts ''
-    data = []
-    @games.each do |game|
-      puts game
-      # data.push({ multiplayer: game.multiplayer, last_played_at: game.last_played_at,
-      #             publish_date: game.publish_date })
-    end
-    # File.write('./json/games.json', JSON.generate(data))
   end
 
   def add_author
     first_name, last_name = author_input
 
     @authors << Author.new(first_name, last_name)
-    puts 'Author created successfully'
+    puts 'Autho  created successfully'
     puts ''
-    @save_authors
   end
 
   private
