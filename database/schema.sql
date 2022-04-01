@@ -57,3 +57,25 @@ CREATE TABLE games (
     FOREIGN KEY author_id REFERENCES author (id),
     FOREIGN KEY source_id REFERENCES source (id)
 );
+
+DROP TABLE IF EXISTS books;
+
+CREATE TABLE books (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    author VARCHAR(100),
+    label VARCHAR(100),
+    publisher VARCHAR(100),
+    cover_state VARCHAR(100),
+    publish_date DATE,
+    archived BOOLEAN,
+    CONSTRAINT label_fk FOREIGN KEY (label_id) REFERENCES label(id)
+);
+
+CREATE TABLE label(
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    title VARCHAR(100),
+    color VARCHAR(100),
+    item_id SERIAL NOT NULL,
+    CONSTRAINT item_fk FOREIGN KEY (item_id) REFERENCES items(id)
+);
+
