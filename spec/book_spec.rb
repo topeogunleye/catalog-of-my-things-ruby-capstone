@@ -1,5 +1,4 @@
 require_relative '../classes/book'
-require_relative '../classes/items'
 
 describe Book do
   before :all do
