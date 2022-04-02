@@ -2,10 +2,17 @@ require_relative './options/add_music_album'
 require_relative './options/book_handler'
 require './classes/game'
 require './classes/author'
+require './modules/game_module'
+require './modules/author_module'
+require 'json'
 
 class App
+  include GamesDataController
+  include AuthorsDataController
   def initialize
     @book_handler = BookHandler.new
+    @games = load_games
+    @authors = load_authors
   end
 
   def add_music_album
@@ -58,7 +65,7 @@ class App
   end
 
   def list_all_games
-    puts 'There are no game please try to add one !' if @games.count.zero?
+    puts 'There are no games please try to add one !' if @games.count.zero?
     @games.each do |game|
       puts "#{game.multiplayer}, Last played at: #{game.last_played_at}, Publish date: #{game.publish_date}"
     end
@@ -75,6 +82,7 @@ class App
     publish_date = publish_date_input
 
     @games << Game.new(multiplayer, last_played_at, publish_date)
+    save_games
     puts 'Game created successfully'
     puts ''
   end
@@ -83,7 +91,7 @@ class App
     first_name, last_name = author_input
 
     @authors << Author.new(first_name, last_name)
-    puts 'Author created successfully'
+    puts 'Autho  created successfully'
     puts ''
   end
 
@@ -101,7 +109,7 @@ class App
 
   def publish_date_input
     print 'Publish_date: '
-    gets.chomp.to_i
+    gets.chomp.to_s
   end
 
   def author_input
