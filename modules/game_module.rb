@@ -3,7 +3,7 @@ require 'json'
 
 module GamesDataController
   def load_games
-    file = './json/games.json'
+    file = 'games.json'
     data = []
     if File.exist?(file) && File.read(file) != ''
       JSON.parse(File.read(file)).each do |element|
@@ -20,6 +20,6 @@ module GamesDataController
       data.push({ multiplayer: game.multiplayer, last_played_at: game.last_played_at,
                   published_date: game.publish_date.to_s })
     end
-    File.write('./json/games.json', JSON.generate(data))
+    File.write('games.json', JSON.generate(data))
   end
 end
