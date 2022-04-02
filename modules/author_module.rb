@@ -3,7 +3,7 @@ require 'json'
 
 module AuthorsDataController
   def load_authors
-    file = './json/authors.json'
+    file = 'authors.json'
     data = []
     if File.exist?(file) && File.read(file) != ''
       JSON.parse(File.read(file)).each do |element|
@@ -18,6 +18,6 @@ module AuthorsDataController
     @authors.each do |author|
       data.push({ first_name: author.first_name, last_name: author.last_name })
     end
-    File.write('./json/authors.json', JSON.generate(data))
+    File.write('authors.json', JSON.generate(data))
   end
 end
