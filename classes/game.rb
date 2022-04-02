@@ -9,6 +9,7 @@ class Game < Item
     @id = Random.rand(1..500)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
+    @publish_date = publish_date
   end
 
   private
