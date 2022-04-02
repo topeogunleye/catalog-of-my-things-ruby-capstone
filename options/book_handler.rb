@@ -45,11 +45,16 @@ class BookHandler
 
   def load_books
     file_data = load_file_if_it_exist
-    puts '-----------------------------------------'
-    file_data.each_with_index do |book, index|
-      puts "(#{index}) - Author: #{book['author']}, Publisher: #{book['publisher']}, Cover State: #{book['cover_state']}, Label: #{book['label']}, Publish Date: #{book['publish_date']}"
+
+    if file_data.nil?
+      puts '----No Books added yet----'
+    else
+      puts '-----------------------------------------'
+      file_data.each_with_index do |book, index|
+        puts "(#{index}) - Author: #{book['author']}, Publisher: #{book['publisher']}, Cover State: #{book['cover_state']}, Label: #{book['label']}, Publish Date: #{book['publish_date']}"
+      end
+      puts '-----------------------------------------'
     end
-    puts '-----------------------------------------'
   end
 
   def create_new_book
@@ -76,13 +81,17 @@ class BookHandler
 
   def list_labels
     file_data = load_file_if_it_exist
-    labels = file_data.uniq { |book| [book['label']] }
 
-    puts '-----------------------------------------'
-    labels.each_with_index do |book, index|
-      puts "(#{index}) - Label: #{book['label']}"
+    if file_data.nil?
+      puts '----No Labels added yet----'
+    else
+      labels = file_data.uniq { |book| [book['label']] }
+
+      puts '-----------------------------------------'
+      labels.each_with_index do |book, index|
+        puts "(#{index}) - Label: #{book['label']}"
+      end
+      puts '-----------------------------------------'
     end
-
-    puts '-----------------------------------------'
   end
 end
