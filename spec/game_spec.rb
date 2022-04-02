@@ -15,7 +15,7 @@ describe Game do
 
   context 'Testing can_be_archived?' do
     it 'should return false' do
-      @game.last_played_at = '2021'
+      @game.last_played_at = 2021
       expect(@game.send(:can_be_archived?)).to be false
     end
   end
