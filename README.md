@@ -62,14 +62,14 @@ Type `rspec spec/` in a terminal to run the tests
 
 👤 **Temitope Ogunleye**
 
-- GitHub: [@githubhandle](https://github.com/topeogunleye)
-- Twitter: [@twitterhandle](https://twitter.com/topeogunleye21)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/ogunleye)
+- GitHub: [@topeogunleye](https://github.com/topeogunleye)
+- Twitter: [@tope_leye](https://twitter.com/tope_leye)
+- LinkedIn: [ogunleye](https://linkedin.com/in/ogunleye)
 
 👤 **Afiz Savage**
 
-- Github: [Afiz Savage](https://github.com/afizsavage)
-- LinkedIn: [Afiz Savage](https://linkedin.com/in/afiz-savage)
+- Github: [@afizsavage](https://github.com/afizsavage)
+- LinkedIn: [afiz-savage](https://linkedin.com/in/afiz-savage)
 
 👤 **Blessed Jason Mwanza**
 
